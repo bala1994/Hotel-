@@ -1,0 +1,65 @@
+<div ng-show="loader" style="position: absolute;top:50%;left:50%;margin-left:-15px;margin-top:-15px;">
+    <img src="images/lazy-loader.gif" style="margin-left:24px;" alt="loader" />
+    <p>Please wait...</p>
+</div>
+
+<div class="container" ng-hide="loader" style="margin-top:60px;">
+    <h1>Create Whistle..!! Avoid Hassle..!!</h1>
+    <p>Choose an image to post a whistle...</p>
+    <div class="row" style="margin: 7%" ng-controller="dashboardController">
+    <div class="col-xs-4">
+    <img src="./images/eat&share.jpeg" data-toggle="modal" data-target="#myModal"
+         alt="Eat&Share" width="200" height="160" style="cursor: pointer" ng-click="mysub('eatshare')"></div>
+    <div class="col-xs-4">
+    <img src="./images/veg.jpg" data-toggle="modal" data-target="#myModal"
+         alt="Veg" width="200" height="160" style="cursor: pointer" ng-click="mysub('veg')"></div>
+    <div class="col-xs-4">
+    <img src="./images/non-veg.jpg" data-toggle="modal" data-target="#myModal"
+         alt="Non-Veg" width="200" height="160" style="cursor: pointer" ng-click="mysub('nonveg')"></div>
+
+
+        <div class="modal fade" id="myModal" role="dialog" style="padding-top: 12%">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Create Whistle</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Category: <span>{{subcat}}</span></h4>
+                        <br><br>
+                        <div class="form-group">
+                            <textarea placeholder="Enter Your Comments" ng-model="comments" style="width: 100%;height: 20%"></textarea></div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <button type="button" ng-disabled="form.$invalid" ng-click="createWhistle(comments, image )" class="btn btn-success" data-dismiss="modal">Create Whistle</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-hide="msgbox" style="">
+        <div style="width:100%;height:40px;vertical-align:center;display: inline-flex;border:1px solid #000">
+            <div style="text-align: center;width:60%;border-right:1px solid #000;    padding-top: 8px;">Comments</div>
+            <div style="text-align: center;width:20%;border-right:1px solid #000;    padding-top: 8px;">Status</div>
+            <div style="text-align: center;width:20%;border-right:1px solid #000;    padding-top: 8px;">Remove Whistle</div>
+        </div>
+        <div style="width:100%;display: inline-flex;border:1px solid #000" ng-repeat="item in items track by $index">
+            <div style="width:60%;border-right:1px solid #000;overflow:hidden;padding:5px;">{{item.comment}}</div>
+            <div style="width: 20%;border-right:1px solid #000;padding:5px;">
+                <a class="btn pull-right" ng-class="{false: 'btn-primary', true: 'btn-danger'}[item.active]"
+                                        ng-click="makeInActive(item)">{{!item.active && 'Turn ON' || 'Turn OFF'}} Whistle</a>
+            </div>
+            <div style="width: 20%;border-right:1px solid #000;padding:5px;">
+                <button type="submit" class="btn large btn-success pull-right" ng-click="deleteWhistle(item)">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div ng-show="msgbox">
+        <h3>{{message}}</h3>
+    </div>
+
+</div>
+

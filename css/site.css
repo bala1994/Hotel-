@@ -1,0 +1,14 @@
+.thumb{
+    width:500px;
+    margin:5px;
+    float:left;
+}
+.profile-pic {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+.file-upload {
+    display: none;
+}

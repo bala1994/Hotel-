@@ -1,0 +1,74 @@
+<div class="container"  style="color: #4EA74E;padding: 5%;" ng-controller="whistlesController">
+<strong style="font-size: 450%"> Avoid hassle,WHISTLE instead</strong>
+</div>
+<form name="myForm">
+<div class="col-xs-4" style="padding-left: 10%;">
+    <div class="row">
+        <div ng-repeat="step in stepsModel">
+                <img class="thumb"  height="250" ng-model="ProductImage" ng-src="{{step}}"/>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form  name="form" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <h4>Upload a different photo...</h4>
+                                <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)"/>
+                            </div>
+                            </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <select class="form-control" disabled><option>Food</option></select>
+                        </div>
+                            </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <textarea class="form-control" ng-model="ProductComments" style="height: 10%" placeholder="Comments"></textarea>
+                        </div>
+                            </div>
+                        <div class="form-group">
+                            <div style="padding-left:2%;padding-right: 2%">
+                                <button type="submit" ng-disabled="form.$invalid" id="submit" class="btn btn-success btn-sm form-control"
+                                        ng-click="createWhistle()" style="height: 5%;font-size: large">CREATE WHISTLE</button>
+                                <button type="reset" id="reset" class="btn btn-success btn-sm form-control"
+                                       style="height: 5%;font-size: large;padding:2%">CLEAR</button>
+                            </div>
+                        </div>
+                    </form></div>
+                </div>
+    </div>
+</div>
+</form>
+
+<div class="col-xs-7" style="padding-left: 5%">
+    <div class="panel panel-default">
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>Comments</th>
+            <th>Image</th>
+            <th>category</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in items">
+
+            <td> <textarea disabled>{{item.comments}}</textarea> </td>
+            <td><img src="{{item.image}}" width="100" alt="ProductImage"></td>
+            <td><input type="text" value="Food" disabled></td>
+            <td>
+                <div ng-switch on="selected">
+                    <button ng-switch-when='true' class="btn btn-primary" ng-click='WhistleOn()'>WhistleON</button>
+                    <button ng-switch-when='false' class="btn btn-primary" ng-click='WhistleOff()'>WhistleOFF</button>
+                </div>
+            </td>
+            <td>
+                <button ng-click="removeItem($index)" class="btn btn-success btn-sm form-control">Remove</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+        </div>
+</div>
