@@ -53,7 +53,7 @@ app.controller('headerController', ['$scope', '$location','$rootScope','$route',
             $cookies.remove('access')
             $cookies.remove('phone')
             $cookies.remove('id')
-        }, function() {
+        }, function(response) {
             $scope.loader = false;
             console.log(response)
             $cookies.remove('name')
